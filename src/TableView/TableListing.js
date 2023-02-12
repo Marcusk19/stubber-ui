@@ -12,6 +12,7 @@ class TableListing extends React.Component {
         };
     }
 
+
     componentDidMount() {
         const connection = process.env.REACT_APP_API_ENDPOINT + "/api/v1/movies";
         fetch(connection)
@@ -55,7 +56,7 @@ class TableListing extends React.Component {
       if(this.state.error) {
         return(
           <div>
-            {this.state.error}
+            <p>an error occured :(</p>
           </div>
         )
       }
