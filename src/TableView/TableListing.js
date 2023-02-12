@@ -53,14 +53,7 @@ class TableListing extends React.Component {
 
     render() {
       const items = this.state.items;
-      if(this.state.error) {
-        return(
-          <div>
-            <p>an error occured :(</p>
-          </div>
-        )
-      }
-      else if(items == null){
+      if(items == null){
           return(
               <TableRow>
                   <TableCell>No movies added yet</TableCell>
