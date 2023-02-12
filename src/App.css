@@ -1,0 +1,72 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 100px;
+  width: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.InputForm {
+  display: inline-block;
+  width: 49%;
+  padding: 5px;
+}
+
+body {
+  background-color: #282c34;
+  color: white;
+  padding: 50px;
+  font-family: Arial;
+}
+
+.rating-1 {
+  background-color: #f7f7f7;
+}
+.rating-2 {
+  background-color: #ff7ffe;
+}
+.rating-3 {
+  background-color: #807fff;
+}
+.rating-4 {
+  background-color: #7fbfff;
+}
+.rating-5 {
+  background-color: #7eff80;
+}
+.rating-6 {
+  background-color: #beff7f;
+}
+.rating-7 {
+  background-color: #feff7f;
+}
+.rating-8 {
+  background-color: #ffdf80;
+}
+.rating-9 {
+  background-color: #ffbf7f;
+}
+.rating-10 {
+  background-color: #ff7f7e;
+}
+
