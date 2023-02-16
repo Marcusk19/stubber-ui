@@ -103,7 +103,7 @@ class Form extends React.Component {
                 type="text" 
                 value={this.state.title} 
                 onChange={this.handleInputChange} 
-                label="Movie title" 
+                label="Movie Title" 
                 margin="normal"
             />
             <TextField 
@@ -111,7 +111,7 @@ class Form extends React.Component {
                 type="number" 
                 value={this.state.rating} 
                 onChange={this.handleInputChange} 
-                label="Movie Rating" 
+                label="Movie Rating (1-10)" 
                 margin="normal"
             />
             </div>

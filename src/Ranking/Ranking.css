@@ -1,0 +1,11 @@
+img {
+    width: 120px;
+    height: 190px;
+    display: block;
+}
+
+.Poster-card {
+    max-width: 220px;
+    max-height: 190px;
+}
+
