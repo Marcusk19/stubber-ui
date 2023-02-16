@@ -50,7 +50,7 @@ class PosterCard extends React.Component {
             )
         } else {
             return(
-                <Card className="Poster-card">
+                <Card className="Poster-card" elevation={5}>
                     <CardContent>
                         <Typography variant="h6">
                             {movie.Title}
@@ -81,12 +81,12 @@ function Rankings() {
     }, [])
     
     return(
-        <Grid container justify="center" alignItems="center" spacing={2}>
+        <Grid container justify="center" alignItems="stretch" spacing={2}>
             {/* movies && movies.map ensures we don't render if movies is null */}
             {movies && movies.map((movie) => {
                 return(
-                    <Grid item xs={2} key={movie.Id}>
-                        <PosterCard movie={movie} />
+                    <Grid item key={movie.Id}>
+                        <PosterCard movie={movie} className="Poster-card"/>
                     </Grid>
                 )
                 }
