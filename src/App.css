@@ -40,33 +40,33 @@ body {
 }
 
 .rating-1 {
-  background-color: #f7f7f7;
+  background-color: #d84214;
 }
 .rating-2 {
-  background-color: #ff7ffe;
+  background-color: #ca5800;
 }
 .rating-3 {
-  background-color: #807fff;
+  background-color: #ba6900;
 }
 .rating-4 {
-  background-color: #7fbfff;
+  background-color: #a97600;
 }
 .rating-5 {
-  background-color: #7eff80;
+  background-color: #988100;
 }
 .rating-6 {
-  background-color: #beff7f;
+  background-color: #868b00;
 }
 .rating-7 {
-  background-color: #feff7f;
+  background-color: #749220;
 }
 .rating-8 {
-  background-color: #ffdf80;
+  background-color: #629839;
 }
 .rating-9 {
-  background-color: #ffbf7f;
+  background-color: #509e51;
 }
 .rating-10 {
-  background-color: #ff7f7e;
+  background-color: #3ca267;
 }
 

@@ -1,42 +1,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import { TextField } from '@mui/material';
-import Box from '@mui/material/Box';
+import { Stack, TextField } from '@mui/material';
 import './Form.css';
-import { ThemeProvider } from '@emotion/react';
-import { createTheme } from '@mui/material/styles'
-
-
-const Theme = {
-    palette: {
-      type: 'dark',
-      primary: {
-        main: '#3f51b5',
-        contrastText: '#ffffff',
-      },
-    },
-    typography: {
-      allVariants: {
-        color: "white"
-      },
-    },
-    components: {
-        MuiInputBase: {
-            styleOverrides: {
-                input: {
-                    color: 'white',
-                },
-                '&.MuiFilledInput-root': {
-                    borderColor: 'white',
-                },
-                '&.Mui-focused': {
-                    borderColor: 'white',
-                },
-            }
-        }
-    }
-};
-const theme = createTheme(Theme);
 
 class Form extends React.Component {
     constructor(props) {
@@ -80,7 +45,7 @@ class Form extends React.Component {
     const endpoint = process.env.REACT_APP_API_ENDPOINT + "/api/v1/movies";
     fetch(endpoint, params).then((response) => {
         response.json();
-        window.location.reload(true);
+        this.props.rerenderCallback();
     }).catch((error) => {
         console.log(error);
         alert('Error: ' + error);
@@ -89,15 +54,14 @@ class Form extends React.Component {
     
     render() {
     return(
-        <ThemeProvider theme={theme}>
-        <Box
+        <Stack
+            spacing={2}
             component="form"
             onSubmit={this.handleSubmit}
-            sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
+            // sx={{
+            //     '& .MuiTextField-root': { m: 1, width: '25ch' },
+            // }}
         >
-            <div>
             <TextField 
                 name="title" 
                 type="text" 
@@ -114,8 +78,6 @@ class Form extends React.Component {
                 label="Movie Rating (1-10)" 
                 margin="normal"
             />
-            </div>
-            <div>
             <TextField 
                 multiline
                 minRows={4}
@@ -126,10 +88,8 @@ class Form extends React.Component {
                 label="Notes"  
                 margin="normal"
             />
-            </div>
             <Button type="submit" variant="contained">Add Movie</Button>
-        </Box>
-        </ThemeProvider>
+        </Stack>
     )
     }
 }
