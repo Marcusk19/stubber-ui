@@ -1,5 +1,6 @@
 import React from 'react';
-import {TableRow, TableCell} from '@mui/material';
+import {TableRow, TableCell, IconButton} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 
 class TableListing extends React.Component {
@@ -73,7 +74,8 @@ class TableListing extends React.Component {
                     <TableCell>{item.Notes}</TableCell>
                     <TableCell>{item.Year}</TableCell>
                     <TableCell color="white">
-                        <Button variant="contained" onClick={() => this.handleDelete(item.Id, item.Title)}>delete</Button>
+                        <IconButton aria-label="delete" onClick={() => this.handleDelete(item.Id, item.Title)}> <DeleteIcon/> </IconButton>
+                        {/* <Button variant="contained" onClick={() => this.handleDelete(item.Id, item.Title)}>delete</Button> */}
                     </TableCell>
                     </TableRow>
                 );

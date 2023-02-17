@@ -1,0 +1,14 @@
+img {
+    width: 120px;
+    height: 190px;
+    display: block;
+}
+
+.Poster-card {
+    max-height: 190px;
+    min-height: 30vw;
+}
+
+.Movie-info{
+    text-align: left;
+}
