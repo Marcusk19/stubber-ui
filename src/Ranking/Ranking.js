@@ -46,12 +46,12 @@ class PosterCard extends React.Component {
         }
         const url = process.env.REACT_APP_API_ENDPOINT + "/api/v1/movies/delete/" + id;
         fetch(url, params).then((response)=> {
-        response.json();
+            response.json();
         // update state on parent function Rankings() to automatically rerender component on delete
-        this.props.setCounter(this.props.counter+1);
+            this.props.fetchData();
         }).catch((error) => {
-        console.log(error);
-        alert('Error: ' + error);
+            console.log(error);
+            alert('Error: ' + error);
         }); 
     }
 
@@ -112,11 +112,9 @@ class PosterCard extends React.Component {
                                 textAlign:"left"
                             }}
                         >
-                            <ul>
-                                <li>{movie.Year}</li>
-                                <li>Rating: {movie.Rating}/10</li>
-                                <li>{movie.Notes}</li>
-                            </ul>
+                            {movie.Year} <br/>
+                            <b>Rating: </b>{movie.Rating} <br/>
+                            <b>Review: </b>{movie.Notes} <br/>
                         </Typography>
                     </CardContent>
                     <CardActions>
@@ -141,16 +139,20 @@ const gridItem = {
 
 
 function Rankings() {
-    const [counter, setCounter] = useState(0); // counter for when we want to rerender
     let [movies, setMovies] = useState(null);
 
-    useEffect(() => {
+    // function we will pass to child component so deletes refresh the DOM
+    let fetchData = React.useCallback(async () => {
         const connection = process.env.REACT_APP_API_ENDPOINT + "/api/v1/movies";
         fetch(connection)
         .then(response => response.json())
         .then(data => setMovies(data.Data))
         .catch(error => console.log(error))
-    }, [movies])
+    }, []);
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData])
 
     if(movies == null){
         return(
@@ -167,7 +169,7 @@ function Rankings() {
                 { movies.map((movie) => {
                     return(
                         <Box sx={gridItem} key={movie.Id}>
-                            <PosterCard movie={movie} counter={counter} setCounter={setCounter}/>
+                            <PosterCard movie={movie} fetchData={fetchData}/>
                         </Box>
                     )
                     }

@@ -40,6 +40,10 @@ make build-prod
 make run-prod
 ```
 
+## Resources
+---
+This project heavily uses [Material UI](https://mui.com/). Docs for the components can be found [here](https://mui.com/material-ui/getting-started/overview/)
+
 ## React
 ---
 Check out the [getting started guide](react-getting-started.md) if you want to learn more about using React.
