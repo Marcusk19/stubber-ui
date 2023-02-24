@@ -3,13 +3,15 @@ import React from 'react';
 import './App.css';
 import TableView from './TableView/TableView.js';
 import Form from './Form/Form.js';
+import FileUploader from './Upload/FileUploader.js';
 import Stack from '@mui/material/Stack';
 import { Container } from '@mui/system';
 import Ranking from './Ranking/Ranking.js';
-import { AppBar, Button, Typography, Toolbar, IconButton, Tooltip, Dialog, DialogContent, createTheme, ThemeProvider } from '@mui/material';
+import { AppBar, Button, Typography, Toolbar, IconButton, Tooltip, Dialog, DialogContent, createTheme, ThemeProvider, List, ListItem, ListItemText } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const stubberTheme = {
   palette: {
@@ -35,6 +37,8 @@ class App extends React.Component {
     this.setView = this.setView.bind(this);
     this.handleFormClose = this.handleFormClose.bind(this);
     this.handleFormOpen = this.handleFormOpen.bind(this);
+    this.handleMenuClose = this.handleMenuClose.bind(this);
+    this.handleMenuOpen = this.handleMenuOpen.bind(this);
     this.appBarLabel = this.appBarLabel.bind(this);
     this.rerenderCallback = this.rerenderCallback.bind(this);
   }
@@ -45,6 +49,14 @@ class App extends React.Component {
 
   handleFormClose() {
     this.setState({form: false});
+  }
+
+  handleMenuOpen(){
+    this.setState({menu: true});
+  }
+
+  handleMenuClose(){
+    this.setState({menu: false});
   }
 
   rerenderCallback() {
@@ -64,6 +76,9 @@ class App extends React.Component {
   appBarLabel() {
     return(
       <Toolbar>
+        <IconButton onClick={() => this.handleMenuOpen()}>
+          <MenuIcon/>
+        </IconButton>
         <img className="App-logo" src={stubber_logo} alt="logo"/>
         <Typography variant="h6" sx={{flexGrow: 1}} textAlign="left">
             Stubber
@@ -73,6 +88,7 @@ class App extends React.Component {
             <AddBoxIcon/>
           </IconButton>
         </Tooltip>
+
         <Button color="inherit" onClick={() => this.setView("table")}>Table View</Button>
         <Button color="inherit" onClick={() => this.setView("card")}>Card View</Button>
       </Toolbar>
@@ -101,18 +117,40 @@ class App extends React.Component {
           <AppBar position="fixed">
             <this.appBarLabel/> 
           </AppBar>
-            <Dialog open={this.state.form} onClose={this.handleFormClose}>
-              <DialogTitle>Add a new Movie</DialogTitle>
-              <DialogContent>
-                <Form rerenderCallback={this.rerenderCallback}/>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={() => this.handleFormClose()}>Close</Button>
-              </DialogActions>
-            </Dialog>
-            <Container className='App-container'>
-              {movieBody}
-            </Container>
+          {/* Dialog for adding a movie */}
+          <Dialog open={this.state.form} onClose={this.handleFormClose}>
+            <DialogTitle>Add a new Movie</DialogTitle>
+            <DialogContent>
+              <Form rerenderCallback={this.rerenderCallback}/>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => this.handleFormClose()}>Close</Button>
+            </DialogActions>
+          </Dialog>
+
+          <Dialog fullScreen open={this.state.menu} onClose={this.handleMenuClose} >
+              <AppBar sx={{position: 'relative'}}>
+                <Toolbar>
+                  <Typography variant='h6' sx={{flexGrow: 1}}>
+                    Options
+                  </Typography>
+                  <Button edge="start" onClick={() => this.handleMenuClose()}>Close</Button>
+                </Toolbar>
+              </AppBar>
+              <List>
+                <ListItem>
+                  <FileUploader />
+                  <ListItemText primary="Upload csv"/>
+                </ListItem>
+                <ListItem>
+                  This is a work in progress :)
+                </ListItem>
+              </List>
+          </Dialog>
+
+          <Container className='App-container'>
+            {movieBody}
+          </Container>
         </Stack>
       </div>
       </ThemeProvider>
